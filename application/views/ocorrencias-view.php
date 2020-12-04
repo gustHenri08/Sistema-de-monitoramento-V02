@@ -114,6 +114,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('Ocorrencias'); ?>"><i class="fa fa-registered"></i> Registro de Ocorrências </a></li>
             <li><a href="<?php echo site_url('Apreensoes'); ?>"><i class="fa fa-ban"></i> Revistas e Apreensões </a></li>
+            <li><a href="<?php echo site_url('Outrascorrencias'); ?>"><i class="fa fa-ban"></i> Outras Ocorrências </a></li>
           </ul>
         </li>
         <li>
@@ -170,7 +171,6 @@
                 <tr>
                   <th>Data</th>
                   <th>CP</th>
-                  <th>Resumo da Ocorrência</th>
                   <th>Tipo</th>
                   <th>Ações</td>
                 </tr>
@@ -192,7 +192,6 @@
                     <option>CP de Vicência</option> 
                     </select>
                   </td>
-                  <td><input type="text" class="form-control" name="resumoentrada" placeholder="Max: 200 caracteres" style="width:140px height:67px " maxlength="250"></td>
                   <td>
                     <select class="form-control" style="width: 200px" name="tipoOcorrencia"><!-- 'name=' adicionado-->
                       <option>Agressão</option>
@@ -200,18 +199,18 @@
                       <option>Custódia Hospitalar</option>
                       <option>Emergência Hospitalar</option>
                       <option>Fuga</option>
-                      <option>Motim</option>
                       <option>Óbito - Natural</option>
                       <option>Óbito - Suicídio</option>
                       <option>Óbito CVLI</option>
-                      <option>Rebelião</option> 
-                      <option>Tumulto</option>
                       <option>Outro</option> 
                     </select>
                   </td>
                   <td class="sorting_1">
                      <a href="#" class="btn btn-success btn-xs">Salvar</a>                    
                   </td>
+                </tr>
+                <tr>
+                <td colspan="4"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
                 </tr>
                 <tr>
                   <td><input type="text" class="form-control" name="dataentrada" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
@@ -229,27 +228,25 @@
                       <option>CP de Vicência</option>
                     </select>
                  </td>
-                  <td>
-                  <input type="text" class="form-control" name="resumoentrada" placeholder="Max: 200 caracteres" style="width:140px height:67px " maxlength="250">
-                  <td>
+                   <td>
                     <select class="form-control" style="width: 200px" name="tipoOcorrencia"><!-- 'name=' adicionado-->
                         <option>Agressão</option>
                         <option>Apreensão</option>
                         <option>Custódia Hospitalar</option>
                         <option>Emergência Hospitalar</option>
                         <option>Fuga</option>
-                        <option>Motim</option>
                         <option>Óbito - Natural</option>
                         <option>Óbito - Suicídio</option>
-                        <option>Óbito CVLI</option>
-                        <option>Rebelião</option> 
-                        <option>Tumulto</option>
+                        <option>Óbito - CVLI</option>
                         <option>Outro</option> 
                       </select>
                   </td>
                   <td class="sorting_1">
                      <a href="#" class="btn btn-success btn-xs">Salvar</a>                    
                   </td>
+                  </tr>
+                  <tr>
+                    <td colspan="4"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
                   </tr>
                 </tfoot>
               </table>
