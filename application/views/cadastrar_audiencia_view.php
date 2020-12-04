@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SMT | Saída de Detento para Audiência</title>
+  <title>SMT | Entrada de Detentos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -12,8 +12,6 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/Ionicons/css/ionicons.min.css">
-  <!--DataTables-->
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css"></script>
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -98,7 +96,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo site_url('Home/entradaPresos'); ?> ">  <!--  Estava com o controller errado   -->
+          <a href="<?php echo site_url('Login/entradaPresos'); ?> ">
             <i class="fa fa-user-plus"></i>
             <span>Entrada de Detentos</span>
           </a>
@@ -124,15 +122,15 @@
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
             <i class="fa fa-user-times"></i>
-            <span>Saída de Detentos</span>
+            <span>Saida do Detento</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('Saidapresos'); ?>"><i class="fa fa-key"></i> Saída da Cadeia Pública</a></li>
-            <li><a href="<?php echo site_url('SaidapresosAudiencia'); ?>"><i class="fa fa-cab"></i> Saída para Audiência</a></li>
-            <li><a href="<?php echo site_url('SaidapresosMedica'); ?>"><i class="fa fa-ambulance"></i> Saída Médica</a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-key"></i> Saída da Cadeia Pública</a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-cab"></i> Saída para Audiência</a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-ambulance"></i> Saída Médica</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -155,98 +153,125 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    <!-- Cabeçalho da Página -->
     <section class="content-header">
-    
-        <h1><p>SAÍDA DE DETENTO PARA AUDIÊNCIA</p></h1>
-        <p></p>
+      <h1>
+        Entrada de Detentos
+      </h1>
+      <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)-->
+        <li><a href="<?php echo site_url('Home'); ?>">Home</a></li>
+        <li class="active">Entrada de Detentos</li>
+      </ol>
+    </section>
 
-      <!-- Main content -->
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
       <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Cadastro</h3>
 
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!--Inicio do Box Body-->
+        <div class="box-body">
+          <!--Inicio do Formulario-->
+          <form role="form" method="post" action="<?php echo site_url('SaidapresosAudiencia/create')?>"><!--Em Testes | chama o controller responsavel por cadastro-->
+          	<div class="form-group"> <!--Campo Cadeia Publica-->
+          			<label>Cadeia Publica</label>
+          			<select class="form-control" style="width: 200px" name="cadeiapublica"><!-- 'name=' adicionado-->
+          				<option>CP de Aliança</option>
+          				<option>CP de Carpina</option>
+          				<option>CP de Glória do Goitá</option>
+          				<option>CP de Goiana</option>
+          				<option>CP de Itambé</option>
+          				<option>CP de Lagoa do Carro</option>
+          				<option>CP de Macaparana</option>
+          				<option>CP de Nazaré da Mata</option>
+          				<option>CP de Timbauba</option>
+          				<option>CP de Vicência</option>
+          			</select>
+          	</div>
 
-<!-- /.box-header -->
-<div class="box-body">
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="dataTables_length" id="example1_length">
-    </div>
+            <div class="form-group">
+              <label>Data de Entrada</label>
+              <input type="text" class="form-control" name="data" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"><!-- 'name=' adicionado-->
+              </div>
 
-  <form action="<?=site_url('SaidapresosAudiencia/pesquisar')?>" method="post">
-    <div class="col-sm-6">
-      <div id="example1_filter" class="dataTables_filter">
-      <label>Procurar Detento:  <input type="text" name="pesquisar" id="busca" class="form-control input-sm" placeholder="Nome, Mãe ou SIAP " aria-controls="example1">
-    <br>  <button type="submit" class="btn btn-primary">Buscar</button></br>
-    <a href="<?php echo site_url('SaidapresosAudiencia/audiencia'); ?>" class="btn btn-primary btn-xs pull-right">Cadastrar</a>
+          	<div class="form-group"> <!-- Nome do Detento-->
+          		<label>Nome</label>
+          		<input type="text" class="form-control" name="nome" placeholder="Nome" style="width:300px"><!-- 'name=' adicionado-->
+          	</div>
 
-     </label>
-  </form>
-  
+          	<div class="form-group"> <!-- Nome dpa Mãjbejjee-->
+          		<label>Nº SIAP</label>
+          		<input type="text" class="form-control" name="numsiap" placeholder="Nº SIAP" style="width:300px"><!-- 'name=' adicionado-->
+          	</div>
+
+          	<div class="form-group"> <!-- Nome do Pai-->
+          		<label>SIC</label>
+          		<input type="text" class="form-control" name="sic" placeholder="SIC" style="width:300px"><!-- 'name=' adicionado-->
+          	</div>
+
+              <div class="form-group"> <!-- Nome do Pai-->
+          		<label>Cidade - Fórum</label>
+          		<input type="text" class="form-control" name="cidade-forum" placeholder="Cidade - Fórum" style="width:300px"><!-- 'name=' adicionado-->
+          	</div>
+
+              <div class="form-group"> <!-- Nome do Pai-->
+          		<label>Condutores</label>
+          		<input type="text" class="form-control" name="condutores" placeholder="Condutores" style="width:300px"><!-- 'name=' adicionado-->
+          	</div>
+
+            <br>
+
+            <div class="col-xs-2"> <!--Botão Cadastrar-->
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
+            </div>
+
+          </form>
+          <!--Fim do Formulario-->
+        </div>
+        <!-- Fim do Box Body -->
       </div>
-    </div>
-  </div>
-  
-  <div class="box-body">
- <table id="example2" class="table table-bordered table-hover">
-   <thead>
-   <tr>
-     <th>ID</th>
-     <th>CP</th>
-     <th>Nome</th>
-     <th>Nº SIAP</th>
-     <th>SIC</th>
-     <th>Data</th>
-     
-     <th>Condutores</th>
-     <th>Ações</th>
-   </tr>
-   </thead>
-   <tbody>
-   <?php foreach ($tbl_saidaaudiencia as $res) { ?>
-     <tr>
-     <td><?= $res->id; ?></td> 
-       <td><?= $res->cadeiapublica; ?></td> 
-       <td> <?= $res->nome; ?></td>
-       <td><?= $res->numsiap; ?> </td>
-       <td><?= $res->sic; ?> </td>
-       <td><?= $res->data; ?> </td>
-       <td><?= $res->condutores; ?> </td>
-       <td>
-         <a href="<?= base_url('Edicao_sair') ?>" class="btn btn-warning btn-xs">Editar</a>
-       </td>
-     
-     </tr>
-     <?php }?>
-   </tbody>
- </table>
-</div>
-  </div>
-  </aside>
+      <!-- Fim do Box -->
     </section>
     <!-- /.content -->
   </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.18
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+    reserved.
+  </footer>
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url(); ?>assets/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 <!--Font Awesome My Link-->
 <script src="https://kit.fontawesome.com/3db1420b56.js" crossorigin="anonymous"></script>
 <script>
   $(document).ready(function () {
-    $('.sidebar-menu').tree()
+    $('.sidebar-menu').tree();
   })
 </script>
 </body>

@@ -103,25 +103,23 @@
             <span>Entrada de Detentos</span>
           </a>
         </li>
+        <li>
+          <a href="<?php echo site_url('Home'); ?> ">
+            <i class="fa fa-registered"></i> <span>Registro de Ocorrências</span>
+          </a>
+        </li>
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
-            <i class="fa fa-registered"></i>
-            <span>Ocorrências</span>
+            <i class="fa fa-file-text-o"></i>
+            <span>Relação</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('Ocorrencias'); ?>"><i class="fa fa-registered"></i> Registro de Ocorrências </a></li>
-            <li><a href="<?php echo site_url('Apreensoes'); ?>"><i class="fa fa-ban"></i> Revistas e Apreensões </a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-unlock"></i> Aberto </a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-unlock-alt"></i> Semi-Aberto </a></li>
           </ul>
-        </li>
-        <li class="treeview">
-        <li>
-          <a href="<?php echo site_url('SemiAberto_e_Aberto'); ?> ">
-            <i class="fa fa-file-text-o"></i>
-            <span>Relação Aberto / Semi-Aberto</span>
-          </a>
         </li>
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
@@ -145,8 +143,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('TransitoInterno'); ?>"><i class="fa fa-refresh"></i> Trânsito Interno</a></li>
-            <li><a href="<?php echo site_url('TransitoExterno'); ?>"><i class="fa fa-exchange"></i> Trânsito Externo</a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-refresh"></i> Trânsito Interno</a></li>
+            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-exchange"></i> Trânsito Externo</a></li>
           </ul>
         </li>
     </section>
@@ -165,85 +163,72 @@
       <!-- Main content -->
       <div class="box">
 
+
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
                 <div class="col-sm-6">
                   <div class="dataTables_length" id="example1_length">
                 </div>
+
+              <form action="<?=site_url('Saidapresos/pesquisar')?>" method="post">
                 <div class="col-sm-6">
                   <div id="example1_filter" class="dataTables_filter">
-                  <label>Procurar Detento:<input type="search" class="form-control input-sm" placeholder="Nome, Mãe ou SIAP " aria-controls="example1"></label>
+                  <label>Procurar Detento:  <input type="text" name="pesquisar" id="busca" class="form-control input-sm" placeholder="Nome, Mãe ou SIAP " aria-controls="example1">
+                <br>  <button type="submit" class="btn btn-primary">Buscar</button></br>
+                <a href="<?php echo site_url('cadastrar_sair'); ?> " class="btn btn-primary btn-xs pull-right">Cadastrar</a>
+
+                 </label>
+              </form>
+            
                   </div>
                 </div>
               </div>
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>CP</th>
-                  <th>Nome</th>
-                  <th>Mãe</th>
-                  <th>Pai</th>
-                  <th>Motivo</th>
-                  <th>Data Saída</th>
-                  <th>Nº Processo</th>
-                  <th>Nº SIAP</th>
-                  <th>SIC</th>
-                  <th>Documentação</th>
-                  <th>Destino</th>
-                  <th>Condutores</th>
-                  <th>Obs</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-<!-- Id -->       <td>1</td>
-<!-- CP -->       <td>CP Carpina</td>
-<!-- Nome -->     <td><a href="tela de edição">Felipe Henrique Moura Canuto</a></td>
-<!-- Mãe -->      <td>Josefina Moura da Silva</td>
-<!-- Pai -->      <td>Teste</td>
-<!--Motivo-->     <td>Fuga</td>
-<!--Data Saida--> <td>23/10/2020</td>
-<!--Processo-->   <td>143456</td>
-<!--SIAP-->       <td>129401</td>
-<!--SIC-->        <td>123491</td>
-<!--Documento-->  <td>xxxxxx</td>
-<!--Destino-->    <td>CP Afrânio</td>
-<!--Condutores--> <td>PCPE</td>
-<!--Observação--> <td>XXXX</td>
-                </tr>
-
-                <td>2</td>
-                  <td>CP Timbauba</td>
-                  <td><a href="tela de edição">Zaqueu Souza</a></td>
-                  <td>Teste</td>
-                  <td>Teste</td>
-                  <td>Evasão</td>
-                  <td>21/4/2019</td>
-                  <td>123456</td>
-                  <td>129404</td>
-                  <td>192910</td>
-                  <td>xxxxxx</td>
-                  <td>CP Afrânio</td>
-                  <td>PCPE</td>
-                  <td>xxxxx</td>
-                </tr>
-
-                </tfoot>
-              </table>
-               </div>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-  </div>
-
-
+              
+              <div class="box-body">
+             <table id="example2" class="table table-bordered table-hover">
+               <thead>
+               <tr>
+               <th>id</th>
+                 <th>CP</th>
+                 <th>Nome</th>
+                 <th>Nome da Mãe</th>
+                 <th>Nome do Pai</th>
+                 <th>Siap</th>
+                 <th>Ações</th>
+               </tr>
+               </thead>
+               <tbody>
+               <?php foreach ($tbl_saidadetentos as $res) { ?>
+                 <tr>
+                 <td><?= $res->id; ?></td> 
+                   <td><?= $res->cadeiapublica; ?></td> 
+                   <td> <?= $res->nome; ?></td>
+                   <td><?= $res->mae; ?> </td>
+                   <td><?= $res->pai; ?> </td>
+                   <td><?= $res->numsiap; ?> </td>
+                   <td>
+                     <a href="<?= base_url('Edicao_sair',$res->id) ?>" class="btn btn-warning btn-xs">Editar</a>
+                   </td>
+                 </tr>
+                 <?php }?>
+               </tbody>
+             </table>
+           </div>
+           <!-- /.box-body -->
+         </div>
+         <!-- /.box -->
+       </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
     <!-- /.content -->
   </div>
+  <!--
+    
+        
+
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
