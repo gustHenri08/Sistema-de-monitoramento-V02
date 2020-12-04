@@ -166,6 +166,11 @@
       <div class="box">
 
             <!-- /.box-header -->
+              <div class="col-sm-6">
+                <div id="example1_filter" class="dataTables_filter">
+                  <label>Procurar Detento:<input type="search" class="form-control input-sm" placeholder="Nome, Mãe ou SIAP " aria-controls="example1"></label>
+                </div>
+              </div>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -206,7 +211,10 @@
                     </select>
                   </td>
                   <td class="sorting_1">
-                     <a href="#" class="btn btn-success btn-xs">Salvar</a>                    
+                     <a href="#" class="btn btn-success btn-xs">Salvar</a>        
+                     <a href="#" class="btn btn-warning btn-xs">Editar</a>
+                     <a href="#" class="btn btn-danger btn-xs">Deletar</a>               
+            
                   </td>
                 </tr>
                 <tr>
@@ -242,7 +250,9 @@
                       </select>
                   </td>
                   <td class="sorting_1">
-                     <a href="#" class="btn btn-success btn-xs">Salvar</a>                    
+                     <a href="#" class="btn btn-success btn-xs">Salvar</a>     
+                     <a href="#" class="btn btn-warning btn-xs">Editar</a>   
+                     <a href="#" class="btn btn-danger btn-xs">Deletar</a>            
                   </td>
                   </tr>
                   <tr>
