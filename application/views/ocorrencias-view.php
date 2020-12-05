@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SMT | Registro de Ocorrências</title>
+  <title>SMT | Entrada de Detentos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -12,13 +12,13 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/Ionicons/css/ionicons.min.css">
-  <!--DataTables-->
-  <script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css"></script>
+  <!-- DataTables -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -98,7 +98,7 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo site_url('Home/entradaPresos'); ?> "> <!--  Estava com o controller errado   -->
+          <a href="<?php echo site_url('Home/entradaPresos'); ?> ">
             <i class="fa fa-user-plus"></i>
             <span>Entrada de Detentos</span>
           </a>
@@ -113,8 +113,9 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('Ocorrencias'); ?>"><i class="fa fa-registered"></i> Registro de Ocorrências </a></li>
+            <li><a href="<?php echo site_url('Outras_ocorrencias'); ?>"><i class="fa fa-registered"></i> Outras Ocorrências </a></li>
             <li><a href="<?php echo site_url('Apreensoes'); ?>"><i class="fa fa-ban"></i> Revistas e Apreensões </a></li>
-            <li><a href="<?php echo site_url('Outrascorrencias'); ?>"><i class="fa fa-ban"></i> Outras Ocorrências </a></li>
+
           </ul>
         </li>
         <li>
@@ -126,7 +127,7 @@
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
             <i class="fa fa-user-times"></i>
-            <span>Saída de Detentos</span>
+            <span>Saida do Detento</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -150,150 +151,111 @@
           </ul>
         </li>
     </section>
+    <!-- /.sidebar -->
   </aside>
 
   <!-- =============================================== -->
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    <!-- Cabeçalho da Página -->
     <section class="content-header">
-    
-        <h1><p>REGISTRO DE OCORRÊNCIAS </p></h1>
-        <p></p>
+      <h1>
+        Ocorrências de Presos
+      </h1>
+      <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)-->
+        <li><a href="<?php echo site_url('Home'); ?>">Home</a></li>
+        <li class="active">Ocorrências</li>
+      </ol>
+    </section>
 
-      <!-- Main content -->
-      <div class="box">
-
-            <!-- /.box-header -->
+    <!-- Main content -->
+    <section class="content">
+     <div class="row">
+       <div class="col-xs-12">
+         <div class="box">
+           <div class="box-header">
+             <h3 class="box-title"> Lista de Detentos </h3>
+           </div>
+           <!-- /.box-header -->
+           <div class="box-body">
               <div class="col-sm-6">
                 <div id="example1_filter" class="dataTables_filter">
                   <label>Procurar Detento:<input type="search" class="form-control input-sm" placeholder="Nome, Mãe ou SIAP " aria-controls="example1"></label>
+                  <br></br>
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                  <br></br>
                 </div>
               </div>
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Data</th>
-                  <th>CP</th>
-                  <th>Tipo</th>
-                  <th>Ações</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td><input type="text" class="form-control" name="dataentrada" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
-                  <td>
-                    <select class="form-control" style="width: 200px" name="cadeiapublica"><!-- 'name=' adicionado-->
-                    <option>CP de Aliança</option>
-                    <option>CP de Carpina</option>
-                    <option>CP de Glória do Goitá</option>
-                    <option>CP de Goiana</option>
-                    <option>CP de Itambé</option>
-                    <option>CP de Lagoa do Carro</option>
-                    <option>CP de Macaparana</option>
-                    <option>CP de Nazaré da Mata</option>
-                    <option>CP de Timbauba</option>
-                    <option>CP de Vicência</option> 
-                    </select>
-                  </td>
-                  <td>
-                    <select class="form-control" style="width: 200px" name="tipoOcorrencia"><!-- 'name=' adicionado-->
-                      <option>Agressão</option>
-                      <option>Apreensão</option>
-                      <option>Custódia Hospitalar</option>
-                      <option>Emergência Hospitalar</option>
-                      <option>Fuga</option>
-                      <option>Óbito - Natural</option>
-                      <option>Óbito - Suicídio</option>
-                      <option>Óbito CVLI</option>
-                      <option>Outro</option> 
-                    </select>
-                  </td>
-                  <td class="sorting_1">
-                     <a href="#" class="btn btn-success btn-xs">Salvar</a>        
-                     <a href="#" class="btn btn-warning btn-xs">Editar</a>
-                     <a href="#" class="btn btn-danger btn-xs">Deletar</a>               
-            
-                  </td>
-                </tr>
-                <tr>
-                <td colspan="4"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
-                </tr>
-                <tr>
-                  <td><input type="text" class="form-control" name="dataentrada" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
-                  <td>
-                    <select class="form-control" style="width: 200px" name="cadeiapublica"><!-- 'name=' adicionado-->
-                      <option>CP de Aliança</option>
-                      <option>CP de Carpina</option>
-                      <option>CP de Glória do Goitá</option>
-                      <option>CP de Goiana</option>
-                      <option>CP de Itambé</option>
-                      <option>CP de Lagoa do Carro</option>
-                      <option>CP de Macaparana</option>
-                      <option>CP de Nazaré da Mata</option>
-                      <option>CP de Timbauba</option>
-                      <option>CP de Vicência</option>
-                    </select>
-                 </td>
-                   <td>
-                    <select class="form-control" style="width: 200px" name="tipoOcorrencia"><!-- 'name=' adicionado-->
-                        <option>Agressão</option>
-                        <option>Apreensão</option>
-                        <option>Custódia Hospitalar</option>
-                        <option>Emergência Hospitalar</option>
-                        <option>Fuga</option>
-                        <option>Óbito - Natural</option>
-                        <option>Óbito - Suicídio</option>
-                        <option>Óbito - CVLI</option>
-                        <option>Outro</option> 
-                      </select>
-                  </td>
-                  <td class="sorting_1">
-                     <a href="#" class="btn btn-success btn-xs">Salvar</a>     
-                     <a href="#" class="btn btn-warning btn-xs">Editar</a>   
-                     <a href="#" class="btn btn-danger btn-xs">Deletar</a>            
-                  </td>
-                  </tr>
-                  <tr>
-                    <td colspan="4"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
-                  </tr>
-                </tfoot>
-              </table>
-          <!-- /.box -->
-        </div>
-        
-  </div>
-
-
+             <table id="example2" class="table table-bordered table-hover">
+               <thead>
+               <tr>
+                 <th>CP</th>
+                 <th>Nome</th>
+                 <th>Nome da Mãe</th>
+                 <th>Nome do Pai</th>
+                 <th>SIAP</td>
+               </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>CP de Paulista</td>
+                   <td><a href="Cadastrar_ocorrencia_presos">Fulano de Tal</td>
+                   <td>Mãe do Fulano de Tal</td>
+                   <td>Pai do Fulano de Tal</td>
+                   <td>123123</td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+           <!-- /.box-body -->
+         </div>
+         <!-- /.box -->
+       </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
     <!-- /.content -->
-</div>
+  </div>
+  <!-- /.content-wrapper -->
 
-  
-
-  
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.18
+    </div>
+    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+    reserved.
+  </footer>
 
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo base_url(); ?>assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- DataTables -->
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/datatables.net-bs/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="<?php echo base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="<?php echo base_url(); ?>assets/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/adminlte.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script>
 <!--Font Awesome My Link-->
 <script src="https://kit.fontawesome.com/3db1420b56.js" crossorigin="anonymous"></script>
 <script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
   })
 </script>
 </body>

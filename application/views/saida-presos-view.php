@@ -103,10 +103,19 @@
             <span>Entrada de Detentos</span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo site_url('Home'); ?> ">
-            <i class="fa fa-registered"></i> <span>Registro de Ocorrências</span>
+        <li class="treeview">
+          <a href="<?php echo site_url('Home'); ?>">
+            <i class="fa fa-registered"></i>
+            <span>Ocorrências</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo site_url('Ocorrencias'); ?>"><i class="fa fa-registered"></i> Registro de Ocorrências </a></li>
+            <li><a href="<?php echo site_url('Outras_ocorrencias'); ?>"><i class="fa fa-registered"></i> Outras Ocorrências </a></li>
+            <li><a href="<?php echo site_url('Apreensoes'); ?>"><i class="fa fa-ban"></i> Revistas e Apreensões </a></li>
+          </ul>
         </li>
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
@@ -158,6 +167,10 @@
     <section class="content-header">
     
         <h1><p>SAÍDA DE DETENTOS DA CP</p></h1>
+        <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)-->
+        <li><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Home">Home</a></li>
+        <li class="active">Saída de Detentos</li>
+      </ol>
         <p></p>
 
       <!-- Main content -->

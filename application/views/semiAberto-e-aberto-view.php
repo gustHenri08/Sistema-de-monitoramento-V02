@@ -113,8 +113,10 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo site_url('Ocorrencias'); ?>"><i class="fa fa-registered"></i> Registro de Ocorrências </a></li>
+            <li><a href="<?php echo site_url('Outras_ocorrencias'); ?>"><i class="fa fa-registered"></i> Outras Ocorrências </a></li>
             <li><a href="<?php echo site_url('Apreensoes'); ?>"><i class="fa fa-ban"></i> Revistas e Apreensões </a></li>
           </ul>
+        </li>
         </li>
         <li>
           <a href="<?php echo site_url('SemiAberto_e_Aberto'); ?> ">
@@ -160,6 +162,10 @@
     <section class="content-header">
     
         <h1><p>RELAÇÃO SEMI-ABERTO E ABERTO</p></h1>
+        <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)-->
+        <li><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Home">Home</a></li>
+        <li class="active">Relação Semi-Aberto e Aberto</li>
+      </ol>
         <p></p>
 
       <!-- Main content -->

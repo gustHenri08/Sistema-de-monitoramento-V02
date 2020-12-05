@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>SMT | Entrada de Detentos</title>
+  <title>SMT | Cadastro de Saída de Detentos</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -96,28 +96,31 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo site_url('Login/entradaPresos'); ?> ">
+          <a href="<?php echo site_url('Home/entradaPresos'); ?> ">
             <i class="fa fa-user-plus"></i>
             <span>Entrada de Detentos</span>
           </a>
         </li>
-        <li>
-          <a href="<?php echo site_url('Home'); ?> ">
-            <i class="fa fa-registered"></i> <span>Registro de Ocorrências</span>
-          </a>
-        </li>
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
-            <i class="fa fa-file-text-o"></i>
-            <span>Relação</span>
+            <i class="fa fa-registered"></i>
+            <span>Ocorrências</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-unlock"></i> Aberto </a></li>
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-unlock-alt"></i> Semi-Aberto </a></li>
+            <li><a href="<?php echo site_url('Ocorrencias'); ?>"><i class="fa fa-registered"></i> Registro de Ocorrências </a></li>
+            <li><a href="<?php echo site_url('Outras_ocorrencias'); ?>"><i class="fa fa-registered"></i> Outras Ocorrências </a></li>
+            <li><a href="<?php echo site_url('Apreensoes'); ?>"><i class="fa fa-ban"></i> Revistas e Apreensões </a></li>
+
           </ul>
+        </li>
+        <li>
+          <a href="<?php echo site_url('SemiAberto_e_Aberto'); ?> ">
+            <i class="fa fa-file-text-o"></i>
+            <span>Relação Aberto / Semi-Aberto</span>
+          </a>
         </li>
         <li class="treeview">
           <a href="<?php echo site_url('Home'); ?>">
@@ -128,9 +131,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-key"></i> Saída da Cadeia Pública</a></li>
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-cab"></i> Saída para Audiência</a></li>
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-ambulance"></i> Saída Médica</a></li>
+            <li><a href="<?php echo site_url('Saidapresos'); ?>"><i class="fa fa-key"></i> Saída da Cadeia Pública</a></li>
+            <li><a href="<?php echo site_url('SaidapresosAudiencia'); ?>"><i class="fa fa-cab"></i> Saída para Audiência</a></li>
+            <li><a href="<?php echo site_url('SaidapresosMedica'); ?>"><i class="fa fa-ambulance"></i> Saída Médica</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -141,8 +144,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-refresh"></i> Trânsito Interno</a></li>
-            <li><a href="<?php echo site_url('Home'); ?>"><i class="fa fa-exchange"></i> Trânsito Externo</a></li>
+            <li><a href="<?php echo site_url('TransitoInterno'); ?>"><i class="fa fa-refresh"></i> Trânsito Interno</a></li>
+            <li><a href="<?php echo site_url('TransitoExterno'); ?>"><i class="fa fa-exchange"></i> Trânsito Externo</a></li>
           </ul>
         </li>
     </section>
@@ -156,12 +159,14 @@
     <!-- Cabeçalho da Página -->
     <section class="content-header">
       <h1>
-        Entrada de Detentos
+        Cadastrar Saída de Detentos
       </h1>
-      <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)-->
-        <li><a href="<?php echo site_url('Home'); ?>">Home</a></li>
-        <li class="active">Saída de Detentos</li>
+      <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)mlp-->
+        <li><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Home">Home</a></li>
+        <li class="active"><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Saidapresos">Saída de Detentos</a></li>
+        <li class="active">Cadastro</li>
       </ol>
+      
     </section>
 
     <!-- Main content -->
