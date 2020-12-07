@@ -18,8 +18,8 @@ class Agente_model extends CI_Model{
     }
 
 
-    function cadastroAgenteMaster(){ // Função reponsável por cadastrar os agentes ao bando de dados: db_agente
-        $data = array(
+    function cadastroAgenteMaster(){ // Função reponsável por cadastrar os agentes ao bando de dados: db_agente (Cadatro realizado pelo administrador)
+        $datamaster = array(
             'nomecompleto'=> $this->input->post('nomecompleto'), //Recebe os dados via post
             'matricula'=> $this->input->post('matricula'),
             'nucleo'=> $this->input->post('nucleo'),
@@ -30,14 +30,24 @@ class Agente_model extends CI_Model{
             'funcao'=> $this->input->post('funcao'),
             'funcionarioativo'=> $this->input->post('funcionarioativo')
         );
-        $this->db->insert('tbl_agente', $data);
+        $this->db->insert('tbl_agente', $datamaster);
     }
 
 
 
-    public function cadastrados(){
+    public function cadastrados(){ // Função responsável por ir ao banco buscar os agentes cadastrados no banco de dados
         return $this->db->get("tbl_agente")->result_array();
     }
 
-    
+    public function show($id){
+        return $this->db->get_where('tbl_agente', array(
+            "id" => $id
+        ))->row_array();
+    }
+
+    public function update($id, $atualizar){
+        $this->db->where('id', $id);
+        return $this->db->update("tbl_agente", $atualizar);
+
+    }
 }

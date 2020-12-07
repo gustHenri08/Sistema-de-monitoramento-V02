@@ -36,9 +36,9 @@
     <!-- Logo -->
     <a href="<?php echo site_url('Home'); ?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>SMP</b></span>
+      <span class="logo-mini"><b>Admin</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SMP</b></span>
+      <span class="logo-lg"><b>Admin</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -73,7 +73,7 @@
           <img src="" class="" alt=""> <!--Foto do Usuario, não pode tirar esse bloco se n quebra a view-->
         </div>
         <div class="pull-left info">
-          <p>Zaqueu Souza</p>
+          <p>Administrador</p>
         </div>
       </div>
       <!-- search form -->
@@ -93,6 +93,12 @@
         <li>
           <a href="<?php echo site_url('Home'); ?>"> <!-- Link do Home, ao ser clicado ele retorna o controller-->
             <i class="fa fa-home"></i> <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo site_url('Agente'); ?>"> <!-- Link do Home, ao ser clicado ele retorna o controller-->
+          <i class="fa fa-user-plus"></i>
+            <span>Agentes</span>
           </a>
         </li>
         <li>
@@ -175,79 +181,141 @@
         <!--Inicio do Box Body-->
         <div class="box-body">
           <!--Inicio do Formulario-->
-          <form role="form" method="post" action="<?php echo site_url('CadastroPresos/create')?>"><!--Em Testes | chama o controller responsavel por cadastro-->
+            <?php if(isset($agentes)) : ?>
+              <form method="post" action="<?= base_url() ?>index.php/Cadastro/update/<?= $agentes["id"] ?>"> <!-- Chama a funtion de edição e para o id que será editado -->
+              <!--Em Testes | chama o controller responsavel pela edição-->
+            <?php else : ?>
+              <form method="post" action="<?php echo site_url('Cadastro/createMaster') ?>">
+              <!--Em Testes | chama o controller responsavel por cadastro-->
+            <?php endif; ?>
          
            <div class="form-group">
           		<label>Nome Completo</label>
-          		<input type="text" class="form-control" name="nome" placeholder="Nome Completo" style="width:300px"><!-- 'name=' adicionado-->
+          		<input type="text" required="required" class="form-control" name="nomecompleto" placeholder="Nome Completo" value="<?= isset($agentes) ? $agentes["nomecompleto"] : "" ?>" style="width:300px"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group">
           		<label>Matrícula</label>
-          		<input type="text" class="form-control" name="matricula" placeholder="Matrícula" style="width:150px"><!-- 'name=' adicionado-->
+          		<input type="int" required="required" class="form-control" name="matricula" maxlength="7" placeholder="Matricula" value="<?= isset($agentes) ? $agentes["matricula"] : "" ?>" style="width:150px"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group"> <!--Campo Cadeia Publica-->
-          			<label>Núcleo Prisional</label>
-          			<select class="form-control" style="width: 200px" name="nucleoprisional">
-          				<option>Arco-Verde</option>
-          				<option>Caruaru</option>
-          				<option>Garanhuns</option>
-          				<option>Lagoa</option>
-          				<option>Petrolina</option>
-          				<option>Salgueiro</option>
-          			</select>
+                <label>Núcleo Prisional</label>
+                <?php if(isset($agentes)) :?>
+                  <select class="form-control" style="width: 200px" name="nucleo">
+                    <option><?=$agentes["nucleo"]?></option>
+                    <option>Arco-Verde</option>
+                    <option>Caruaru</option>
+                    <option>Garanhuns</option>
+                    <option>Lagoa</option>
+                    <option>Petrolina</option>
+                    <option>Salgueiro</option>
+                  </select>
+                <?php else: ?>
+                  <select class="form-control" style="width: 200px" name="nucleo">
+                    <option>Arco-Verde</option>
+                    <option>Caruaru</option>
+                    <option>Garanhuns</option>
+                    <option>Lagoa</option>
+                    <option>Petrolina</option>
+                    <option>Salgueiro</option>
+                  </select>
+                <?php endif; ?>
           	</div>
 
             <div class="form-group"> <!--Campo Cadeia Publica-->
-          			<label>Centro Prisional</label>
-          			<select class="form-control" style="width: 200px" name="cp">
-          				<option>CP</option>
-          				<option>CP</option>
-          				<option>CP</option>
-          				<option>CP</option>
-          				<option>CP</option>
-          				<option>CP</option>
-          			</select>
+                <label>Centro Prisional</label>
+                <?php if(isset($agentes)) :?>
+                  <select class="form-control" style="width: 200px" name="unidadeprisional">
+                    <option><?=$agentes["unidadeprisional"]?></option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                  </select>
+                <?php else: ?>
+                  <select class="form-control" style="width: 200px" name="unidadeprisional">
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                    <option>CP</option>
+                  </select>
+                <?php endif; ?>
           	</div>
 
             <div class="form-group"> <!--Campo função-->
-          			<label>Função</label>
-          			<select class="form-control" style="width: 200px" name="função">
-          				<option>Administrador</option>
-          				<option>Agente</option>
-          			</select>
+                <label>Função</label>
+                <?php if(isset($agentes)) :?>
+                  <select class="form-control" style="width: 200px" name="funcao">
+                    <option><?=$agentes["funcao"]?></option>
+                    <option>Agente</option>
+                    <option>Administrador</option>                    
+          		  	</select>
+                <?php else: ?>
+                  <select class="form-control" style="width: 200px" name="funcao">
+                    <option>Agente</option>
+                    <option>Administrador</option>                    
+          		  	</select>
+                <?php endif; ?>
+          			
           	</div>
 
             <div class="form-group"> <!--Campo Cadeia Publica-->
-          			<label>Funcionario Ativo</label>
-          			<select class="form-control" style="width: 200px" name="atividade">
-          				<option>Ativo</option>
-          				<option>Inativo</option>
-          			</select>
+                <label>Funcionario Ativo</label>
+                <?php if(isset($agentes)) :?>
+                <select class="form-control" style="width: 200px" name="funcionarioativo">
+                  <option><?=$agentes["funcionarioativo"]?></option>
+                  <option>Inativo</option>  
+                  <option>Ativo</option>          				
+                </select>
+                <?php else: ?>
+                  <select class="form-control" style="width: 200px" name="funcionarioativo">
+                  <option>Inativo</option>  
+                  <option>Ativo</option>          				
+                </select>
+                <?php endif; ?>
+
           	</div>
 
 
           	<div class="form-group"> <!-- Nome do Pai-->
           		<label>E-mail Institucional</label>
-          		<input type="text" class="form-control" name="E-mailInstitucional" placeholder="E-mail Institucional" style="width:300px"><!-- 'name=' adicionado-->
+          		<input type="email" required="required" class="form-control" name="emailinstitucional" placeholder="E-mail Institucional" value="<?= isset($agentes) ? $agentes["emailinstitucional"] : "" ?>" style="width:300px"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group"> <!--Data de Prisão-->
           		<label>Login</label>
-          		<input type="text" class="form-control" name="login" placeholder="Login" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
+          		<input type="text" required="required" class="form-control" name="login" placeholder="Login" value="<?= isset($agentes) ? $agentes["login"] : "" ?>" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group"> <!--Observações-->
                   <label>Senha</label>
-                  <input type="text" class="form-control" name="senha" placeholder="Senha" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
+                  <input type="text" required="required" class="form-control" name="senha" placeholder="Senha" value="<?= isset($agentes) ? $agentes["senha"] : "" ?>" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
             </div>
 
             <br>
 
+            <?php if(isset($agentes)) :?>
+
+              <div class="col-xs-2"> <!--Botão Cadastrar-->
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Salvar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
+              </div>
+
+            <?php else: ?>
+              <div class="col-xs-2"> <!--Botão Cadastrar-->
+                <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
+              </div>
+
+            <?php endif; ?>
+
             <div class="col-xs-2"> <!--Botão Cadastrar-->
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
+            <a href="<?php echo site_url('Agente'); ?>" class="btn btn-danger btn-block btn-flat">Voltar</a><!--Botão atualizado pq não estav fazendo o 'submit'-->
             </div>
+            
 
           </form>
           <!--Fim do Formulario-->

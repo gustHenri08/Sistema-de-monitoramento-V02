@@ -19,9 +19,23 @@ class Cadastro extends CI_Controller{
 
     }
 
-    public function createMaster(){ //Carrega a Função cadastroAgente que está no Agente_model
+    public function createMaster(){ //Carrega a Função cadastroAgenteMaster que está no Agente_model
         $this->Agente_model->cadastroAgenteMaster();
         redirect('Agente');
+
+    }
+
+    public function editMaster($id){ // Faz o carregamento dos dados de um agente cadastrado atravez da função show no Agente_model
+        $edit['agentes'] = $this->Agente_model->show($id);
+
+
+        $this->load->view('cadastro-agente-view', $edit);
+    }
+
+    public function update($id){
+        $atualizar = $_POST;
+        $this->Agente_model->update($id, $atualizar);
+        redirect("Agente");
 
     }
 }

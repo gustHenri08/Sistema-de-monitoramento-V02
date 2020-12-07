@@ -27,30 +27,30 @@ class Login extends CI_Controller{
 
     if($user){
       $funcao = $user['funcao'];
+      $ativo = $user['funcionarioativo'];
 
-      if($funcao){
-        $funcao == "admin";
-        redirect("Home/admin");
+      if($ativo != "Ativo" || ""){
+
+        redirect("Login");
+
+          
       }else{
+        
+          // Define quais funções podem acessar o sistema
+        if($funcao == "Administrador"){
 
-        //print "<pre>";  //Print => qnd descomentados exibem na tela o que está contido na $_SESSION
-        //print_r($funcao);
-        //print "</pre>";
-        //exit();
+          redirect("Home/admin");
 
+        }elseif($funcao == "Agente"){         
+          redirect("Home");
 
+        }elseif($funcao != "admin" || "agente"){
+          redirect("Login");
+        }
 
-        //$this->session->set_userdata("logged_user", $user); //Estão sendo criadas duas session uma com os dados e a outra sem os dados
-        //print "<pre>";  //Print => qnd descomentados exibem na tela o que está contido na $_SESSION
-        //print_r($_SESSION);
-        //print "</pre>";
-        //exit();
-
-        //$this->output->enable_profiler(TRUE);  // exibe erros serve como debug
-        redirect("Home"); // se quissar testar a session coloca : redirect("Home/admin")
       }
+
     }else{
-      //$this->session->sess_destroy();
       redirect("Login");
     }
 

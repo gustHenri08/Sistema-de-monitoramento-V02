@@ -213,7 +213,7 @@
                             <td><?= $agents['funcionarioativo']?></td>
                         
                             <td>
-                                <a href="#" class="btn btn-warning btn-xs">Editar</a>
+                            <a href="<?= base_url() ?>index.php/Cadastro/editMaster/<?= $agents["id"] ?>" class="btn btn-warning btn-xs">Editar</a>
                             </td>
                         </tr>
                     <?php endforeach;?>
