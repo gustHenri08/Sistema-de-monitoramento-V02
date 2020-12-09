@@ -200,7 +200,7 @@
                 </tr>
                </thead>
                <tbody>
-                    <?php foreach($agent as $agents) : ?>
+                    <?php foreach($agent as $agents) : ?><!-- Pega os dados vindos do controller de Agente -->
                         <tr>
                             <td><?= $agents['nomecompleto']?></td>
                             <td><?= $agents['matricula']?></td>

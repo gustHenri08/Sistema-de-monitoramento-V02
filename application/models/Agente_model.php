@@ -37,15 +37,17 @@ class Agente_model extends CI_Model{
 
     public function cadastrados(){ // Função responsável por ir ao banco buscar os agentes cadastrados no banco de dados
         return $this->db->get("tbl_agente")->result_array();
+
+        //Função envia os dados dos agentes para o controller de 'Agente'
     }
 
-    public function show($id){
+    public function show($id){ // Envia os dados para o controller de 'Cadastro'
         return $this->db->get_where('tbl_agente', array(
             "id" => $id
         ))->row_array();
     }
 
-    public function update($id, $atualizar){
+    public function update($id, $atualizar){ // Recebe os dados do controller de cadastro
         $this->db->where('id', $id);
         return $this->db->update("tbl_agente", $atualizar);
 

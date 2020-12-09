@@ -8,6 +8,7 @@ class Agente extends CI_Controller{
         $data['agent'] = $this->Agente_model->cadastrados();
 
         $this->load->view('agente-view', $data); // Carrega a view de login
+        //$data -> envia os dados para a 'agente-view'
     }
 
     public function cadastro(){ //Carrega a Função cadastroAgente que está no Agente_model

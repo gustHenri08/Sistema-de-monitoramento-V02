@@ -163,13 +163,33 @@
   <div class="content-wrapper">
     <!-- Cabeçalho da Página -->
     <section class="content-header">
+
+    <?php if(isset($agentes)) :?>
+
+      <h1>
+        Edição de Agentes
+      </h1>
+        
+    <?php else: ?>
+
       <h1>
         Cadastro de Agentes
       </h1>
+            
+    <?php endif; ?>
       <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)mlp-->
         <li><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Home">Home</a></li>
         <li class="active"><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Agente">Agentes</a></li>
-        <li class="active">Cadastro</a></li>
+        <?php if(isset($agentes)) :?>
+
+          <li class="active">Edição</a></li>
+          
+        <?php else: ?>
+
+          <li class="active">Cadastro</a></li>
+          
+        <?php endif; ?>
+        
       </ol>
     </section>
 
@@ -289,12 +309,12 @@
 
             <div class="form-group"> <!--Data de Prisão-->
           		<label>Login</label>
-          		<input type="text" required="required" class="form-control" name="login" placeholder="Login" value="<?= isset($agentes) ? $agentes["login"] : "" ?>" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
+          		<input type="text" class="form-control" name="login" placeholder="Login" value="<?= isset($agentes) ? $agentes["login"] : "" ?>" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group"> <!--Observações-->
                   <label>Senha</label>
-                  <input type="text" required="required" class="form-control" name="senha" placeholder="Senha" value="<?= isset($agentes) ? $agentes["senha"] : "" ?>" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
+                  <input type="text" class="form-control" name="senha" placeholder="Senha" value="<?= isset($agentes) ? $agentes["senha"] : "" ?>" style="width:300px" maxlength="16"><!-- 'name=' adicionado-->
             </div>
 
             <br>

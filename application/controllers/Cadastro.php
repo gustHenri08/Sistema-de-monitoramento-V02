@@ -32,7 +32,7 @@ class Cadastro extends CI_Controller{
         $this->load->view('cadastro-agente-view', $edit);
     }
 
-    public function update($id){
+    public function update($id){// Recebe os dados de 'cadastro-agente-view' e envia para a funcao update do Agente_Model
         $atualizar = $_POST;
         $this->Agente_model->update($id, $atualizar);
         redirect("Agente");

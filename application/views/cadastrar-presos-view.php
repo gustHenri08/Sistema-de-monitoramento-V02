@@ -288,6 +288,10 @@
             <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
             </div>
 
+            <div class="col-xs-2"> <!--Botão Cadastrar-->
+            <a href="<?php echo site_url('Home/entradaPresos'); ?>" class="btn btn-danger btn-block btn-flat">Voltar</a><!--Botão atualizado pq não estav fazendo o 'submit'-->
+            </div>
+
           </form>
           <!--Fim do Formulario-->
         </div>
