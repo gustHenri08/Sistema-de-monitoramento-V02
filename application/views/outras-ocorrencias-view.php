@@ -183,7 +183,6 @@
                 <thead>
                 <tr>
                   <th>Data Inicial</th>
-                  <th>Data Final</th>
                   <th>Núcleo</th>
                   <th>CP</th>
                   <th>Tipo</th>
@@ -192,9 +191,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                  <td><input type="text" class="form-control" name="datainicial" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
-                  <td><input type="text" class="form-control" name="datafinal" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
-                  <td>
+                  <td><input type="text" class="form-control" name="datainicial" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>                  <td>
                     <select class="form-control" style="width 200px" name="nucleo">
                      <option>Arco-Verde</option>
                      <option>Caruaru</option>
@@ -232,14 +229,12 @@
                   </td>
                 </tr>
                 <tr>
-                <td colspan="6"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
+                <td colspan="5"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
                 </tr>
                 <tr>
                   <td><input type="text" class="form-control" name="dataentrada" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
-                  <td><input type="text" class="form-control" name="datafinal" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>
-
                   <td>
-                    <select class="form-control" style="width 200px" name="nucleo">
+                    <select class="form-control" style="width: 200px" name="nucleo">
                      <option>Arco-Verde</option>
                      <option>Caruaru</option>
                      <option>Garanhuns</option>
@@ -277,7 +272,7 @@
                   </td>
                   </tr>
                   <tr>
-                    <td colspan="6"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
+                    <td colspan="5"><textarea style ="resize: none; height: 300px"  class="form-control" rows="5" name="resumoOcorrencia" placeholder="Resumo da Ocorrência"></textarea></td>
                   </tr>
                 </tfoot>
               </table>
