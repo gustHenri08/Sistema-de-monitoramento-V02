@@ -192,7 +192,7 @@
                 <tbody>
                 <tr>
                   <td><input type="text" class="form-control" name="datainicial" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"></td>                  <td>
-                    <select class="form-control" style="width 200px" name="nucleo">
+                    <select class="form-control" style="width: 200px" name="nucleo">
                      <option>Arco-Verde</option>
                      <option>Caruaru</option>
                      <option>Garanhuns</option>
