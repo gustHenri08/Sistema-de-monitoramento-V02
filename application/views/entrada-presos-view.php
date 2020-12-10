@@ -98,7 +98,13 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo site_url('Home/entradaPresos'); ?> ">
+          <a href="<?php echo site_url('Agente'); ?>"> <!-- Link do Home, ao ser clicado ele retorna o controller-->
+          <i class="fa fa-user-plus"></i>
+            <span>Agentes</span>
+          </a>
+        </li>
+        <li>
+          <a href="<?php echo site_url('Presos'); ?> ">
             <i class="fa fa-user-plus"></i>
             <span>Entrada de Detentos</span>
           </a>
@@ -190,15 +196,18 @@
                </tr>
                </thead>
                <tbody>
-                 <tr>
-                   <td>CP de Paulista</td>
-                   <td>Fulano de Tal</td>
-                   <td>Mãe do Fulano de Tal</td>
-                   <td>Pai do Fulano de Tal</td>
-                   <td>
-                     <a href="#" class="btn btn-warning btn-xs">Editar</a>
-                   </td>
-                 </tr>
+                  <?php foreach($presos as $presos) : ?>
+                    <tr>
+                      <td><?= $presos['cadeiapublica']?></td>
+                      <td><?= $presos['nome']?></td>
+                      <td><?= $presos['nomemae']?></td>
+                      <td><?= $presos['nomepai']?></td>
+                      <td>
+                      <a href="<?= base_url() ?>index.php/CadastroPresos/editPresos/<?= $presos["id"] ?>" class="btn btn-warning btn-xs">Editar</a>
+                      </td>
+                    </tr>
+                  <?php endforeach?>
+                 
                </tbody>
              </table>
            </div>

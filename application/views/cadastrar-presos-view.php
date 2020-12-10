@@ -157,12 +157,31 @@
   <div class="content-wrapper">
     <!-- Cabeçalho da Página -->
     <section class="content-header">
+    <?php if(isset($detentos)) :?>
+
       <h1>
-        Entrada de Detentos
+        Edição de Detentos
       </h1>
+      
+    <?php else: ?>
+
+      <h1>
+        Cadastro de Detentos
+      </h1>
+          
+    <?php endif; ?>
       <ol class="breadcrumb"> <!--Area referente ao Mapa de navegação do site (Precisa de melhorias)-->
         <li><a href="<?php echo site_url('Home'); ?>">Home</a></li>
-        <li class="active">Entrada de Detentos</li>
+        <li class="active"><a href="http://localhost/Sistema-de-Monitoramento-V02/index.php/Presos">Presos</a></li>
+        <?php if(isset($detentos)) :?>
+
+          <li class="active">Edição</a></li>
+          
+        <?php else: ?>
+
+          <li class="active">Cadastro</a></li>
+          
+        <?php endif; ?>
       </ol>
     </section>
 
@@ -172,7 +191,6 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Cadastro</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -185,46 +203,82 @@
         <!--Inicio do Box Body-->
         <div class="box-body">
           <!--Inicio do Formulario-->
-          <form role="form" method="post" action="<?php echo site_url('CadastroPresos/create')?>"><!--Em Testes | chama o controller responsavel por cadastro-->
+          <?php if(isset($detentos)) : ?>
+            <form method="post" action="<?= base_url() ?>index.php/CadastroPresos/updatepresos/<?= $detentos["id"] ?>"> <!-- Chama a funtion de edição e para o id que será editado -->
+            <!--Em Testes | chama o controller responsavel pela edição-->
+          <?php else : ?>
+            <form method="post" action="<?php echo site_url('CadastroPresos/create') ?>">
+            <!--Em Testes | chama o controller responsavel por cadastro-->
+          <?php endif; ?>
           	<div class="form-group"> <!--Campo Cadeia Publica-->
-          			<label>Cadeia Publica</label>
-          			<select class="form-control" style="width: 200px" name="cadeiapublica"><!-- 'name=' adicionado-->
-          				<option>CP de Aliança</option>
-          				<option>CP de Carpina</option>
-          				<option>CP de Glória do Goitá</option>
-          				<option>CP de Goiana</option>
-          				<option>CP de Itambé</option>
-          				<option>CP de Lagoa do Carro</option>
-          				<option>CP de Macaparana</option>
-          				<option>CP de Nazaré da Mata</option>
-          				<option>CP de Timbauba</option>
-          				<option>CP de Vicência</option>
-          			</select>
+                <label>Cadeia Publica</label>
+                <?php if(isset($detentos)): ?>
+                  <select class="form-control" style="width: 200px" name="cadeiapublica"><!-- 'name=' adicionado-->
+                    <option><?=$detentos["cadeiapublica"]?></option>
+                    <option>CP de Aliança</option>
+                    <option>CP de Carpina</option>
+                    <option>CP de Glória do Goitá</option>
+                    <option>CP de Goiana</option>
+                    <option>CP de Itambé</option>
+                    <option>CP de Lagoa do Carro</option>
+                    <option>CP de Macaparana</option>
+                    <option>CP de Nazaré da Mata</option>
+                    <option>CP de Timbauba</option>
+                    <option>CP de Vicência</option>
+                  </select>
+                <?php else :?>
+                  <select class="form-control" style="width: 200px" name="cadeiapublica"><!-- 'name=' adicionado-->
+                    <option>CP de Aliança</option>
+                    <option>CP de Carpina</option>
+                    <option>CP de Glória do Goitá</option>
+                    <option>CP de Goiana</option>
+                    <option>CP de Itambé</option>
+                    <option>CP de Lagoa do Carro</option>
+                    <option>CP de Macaparana</option>
+                    <option>CP de Nazaré da Mata</option>
+                    <option>CP de Timbauba</option>
+                    <option>CP de Vicência</option>
+                  </select>
+                <?php endif;?>
           	</div>
 
             <div class="form-group">
               <label>Data de Entrada</label>
-              <input type="text" class="form-control" name="dataentrada" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"><!-- 'name=' adicionado-->
+              <input type="text" class="form-control" name="dataentrada" placeholder="dd/mm/aaaa" value="<?= isset($detentos) ? $detentos["dataentrada"] : ""?>" style="width:140px" maxlength="10" ><!-- 'name=' adicionado-->
               </div>
 
           	<div class="form-group"> <!-- Nome do Detento-->
           		<label>Nome</label>
-          		<input type="text" class="form-control" name="nome" placeholder="Nome" style="width:300px"><!-- 'name=' adicionado-->
+          		<input type="text" class="form-control" name="nome" placeholder="Nome" value="<?= isset($detentos) ? $detentos["nome"] : ""?>" style="width:300px"><!-- 'name=' adicionado-->
           	</div>
 
           	<div class="form-group"> <!-- Nome da Mãe-->
           		<label>Nome da Mãe</label>
-          		<input type="text" class="form-control" name="nomemae" placeholder="Nome da Mãe" style="width:300px"><!-- 'name=' adicionado-->
+          		<input type="text" class="form-control" name="nomemae" placeholder="Nome da Mãe" value="<?= isset($detentos) ? $detentos["nomemae"] : "" ?>" style="width:300px"><!-- 'name=' adicionado-->
           	</div>
 
           	<div class="form-group"> <!-- Nome do Pai-->
           		<label>Nome do Pai</label>
-          		<input type="text" class="form-control" name="nomepai" placeholder="Nome" style="width:300px"><!-- 'name=' adicionado-->
+          		<input type="text" class="form-control" name="nomepai" placeholder="Nome do Pai" value="<?= isset($detentos) ? $detentos["nomepai"] : "" ?>" style="width:300px"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group"> <!--Motivo-->
                 <label>Motivo</label>
-                <select class="form-control" style="width: 250px" name="motivo"><!-- 'name=' adicionado-->
+                <?php if(isset($detentos)): ?>
+                  <select class="form-control" style="width: 250px" name="motivo"><!-- 'name=' adicionado-->
+                    <option><?=$detentos["motivo"]?></option>
+                    <option>Expiração de Prazo</option>
+                    <option>Mandado de Prisão Civil</option>
+                    <option>Mandado de Prisão Preventiva</option>
+                    <option>Mandado de Prisão Temporária</option>
+                    <option>Mandado de Recolhimento</option>
+                    <option>Recaptura - Mandado de Prisão</option>
+                    <option>Transferência</option>
+                    <option>Trânsito</option>
+                    <option>Outros</option>
+                  </select>
+                <?php else :?>
+                  <select class="form-control" style="width: 250px" name="motivo"><!-- 'name=' adicionado-->
                   <option>Expiração de Prazo</option>
                   <option>Mandado de Prisão Civil</option>
                   <option>Mandado de Prisão Preventiva</option>
@@ -234,11 +288,26 @@
                   <option>Transferência</option>
                   <option>Trânsito</option>
                   <option>Outros</option>
-                </select>
+                  </select>
+                <?php endif;?>
             </div>
 
             <div class="form-group"> <!--Origem-->
               <label>Origem</label><!-- Origem alterada para ficar de acordo com documentação, versão antiga estava com os options errados-->
+              <?php if(isset($detentos)): ?>
+                <select class="form-control" style="width: 250px" name="origem"><!-- 'name=' adicionado-->
+                  <option><?= $detentos["origem"]?></option>
+                  <option>CP de Altinho</option>
+                  <option>CP de Bom Conselho</option> 
+                  <option>CP de Carpina</option>
+                  <option>CP de Glória do Goitá</option>
+                  <option>CP de Lagoa do Carro</option>
+                  <option>Delegacia - PC</option>
+                  <option>Outra UF</option>
+                  <option>Polícia Militar</option>
+                  <option>Outra Origem</option>
+                </select>
+              <?php else: ?>
                 <select class="form-control" style="width: 250px" name="origem"><!-- 'name=' adicionado-->
                   <option>CP de Altinho</option>
                   <option>CP de Bom Conselho</option> 
@@ -250,46 +319,74 @@
                   <option>Polícia Militar</option>
                   <option>Outra Origem</option>
                 </select>
+              <?php endif;?>
             </div>
 
             <div class="form-group"> <!--Data de Prisão-->
           		<label>Data da Prisão</label>
-          		<input type="text" class="form-control" name="dataprisao" placeholder="dd/mm/aaaa" style="width:140px" maxlength="10"><!-- 'name=' adicionado-->
+          		<input type="text" class="form-control" name="dataprisao" placeholder="dd/mm/aaaa" value="<?= isset($detentos) ? $detentos["dataprisao"] : "" ?>" style="width:140px" maxlength="10"><!-- 'name=' adicionado-->
           	</div>
 
             <div class="form-group"> <!--Documentação-->
                 <label>Documentação</label>
-                <select class="form-control" style="width: 230px" name="documentacao"><!-- 'name=' adicionado-->
-                  <option>Auto de Prisão em Flagrante</option>
-                  <option>Mandado de Prisão</option>
-                  <option>Mandado de Recolhimento</option>
-                  <option>Ofício de Transferência</option>
-                  <option>Prisão Temporária</option>
-                  <option>Outro</option>
-                </select>
+                <?php if(isset($detentos)): ?>
+                  <select class="form-control" style="width: 230px" name="documentacao"><!-- 'name=' adicionado-->
+                    <option><?= $detentos["documentacao"]?></option>
+                    <option>Auto de Prisão em Flagrante</option>
+                    <option>Mandado de Prisão</option>
+                    <option>Mandado de Recolhimento</option>
+                    <option>Ofício de Transferência</option>
+                    <option>Prisão Temporária</option>
+                    <option>Outro</option>
+                  </select>
+                <?php else :?>
+                  <select class="form-control" style="width: 230px" name="documentacao"><!-- 'name=' adicionado-->
+                    <option>Auto de Prisão em Flagrante</option>
+                    <option>Mandado de Prisão</option>
+                    <option>Mandado de Recolhimento</option>
+                    <option>Ofício de Transferência</option>
+                    <option>Prisão Temporária</option>
+                    <option>Outro</option>
+                  </select>
+                <?php endif;?>
             </div>
 
             <div class="form-group"> <!--Crime de Repercussão-->
                 <label>Crime de Repercussão</label>
-                <select class="form-control" style="width: 90px" name="crimerepercurssao"><!-- 'name=' adicionado-->
-                  <option>Sim</option>
-                  <option>Não</option>
-                </select>
+                <?php if(isset($detentos)) :?>
+                  <select class="form-control" style="width: 90px" name="crimerepercurssao"><!-- 'name=' adicionado-->
+                    <option><?= $detentos["crimerepercurssao"]?></option>
+                    <option>Sim</option>
+                    <option>Não</option>
+                  </select>
+                <?php else :?>
+                  <select class="form-control" style="width: 90px" name="crimerepercurssao"><!-- 'name=' adicionado-->
+                    <option>Sim</option>
+                    <option>Não</option>
+                  </select>
+                <?php endif;?>
             </div>
 
             <div class="form-group"> <!--Observações-->
                   <label>Observações Gerais</label>
-                  <textarea class="form-control" rows="5" name="observacoesgerais" placeholder="Observações"></textarea><!-- 'name=' adicionado-->
+                  <textarea class="form-control" rows="5" name="observacoesgerais" placeholder="Observações"> <?= isset($detentos) ? $detentos["observacoesgerais"] : "" ?> </textarea><!-- 'name=' adicionado-->
             </div>
 
             <br>
 
-            <div class="col-xs-2"> <!--Botão Cadastrar-->
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
-            </div>
+
+            <?php if (isset($detentos)) :?>
+              <div class="col-xs-2"> <!--Botão Cadastrar-->
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Salvar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
+              </div>
+            <?php else :?>
+              <div class="col-xs-2"> <!--Botão Cadastrar-->
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Cadastrar</button><!--Botão atualizado pq não estav fazendo o 'submit'-->
+              </div>
+            <?php endif;?>
 
             <div class="col-xs-2"> <!--Botão Cadastrar-->
-            <a href="<?php echo site_url('Home/entradaPresos'); ?>" class="btn btn-danger btn-block btn-flat">Voltar</a><!--Botão atualizado pq não estav fazendo o 'submit'-->
+            <a href="<?php echo site_url('Presos'); ?>" class="btn btn-danger btn-block btn-flat">Voltar</a><!--Botão atualizado pq não estav fazendo o 'submit'-->
             </div>
 
           </form>
